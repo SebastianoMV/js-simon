@@ -57,7 +57,6 @@ function results() {
     }else{
       sq.className = 'square lose';
       sq.innerHTML = `<span>X</span>`;
-      c++;
     }
   document.querySelector('h1').innerHTML = `Hai indovinato ${c} numeri!`
     
