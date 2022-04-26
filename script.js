@@ -1,7 +1,7 @@
 const container = document.querySelector('.container');
 const numeriArr = [];
 const numeriArrRandom = [];
-let c= 0;
+
 
 createNumber(); 
 setTimeout(resetText,5 * 1000);
@@ -48,6 +48,7 @@ function promptNumbers(){
 }
 
 function results() {
+  let c= 0;
   for(let i = 0; i < 5; i++){
     const sq = createSquare(container)
     if (numeriArr[i] == numeriArrRandom[i]) {
