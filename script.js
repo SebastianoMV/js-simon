@@ -1,14 +1,24 @@
-const container = document.querySelector('.container');
+const container = document.querySelector('.smv-container');
+const messaggio = document.querySelector('#messaggio');
 const numeriArr = [];
 const numeriArrRandom = [];
+let secondi = 5;
 
+messaggio.innerHTML = `Hai 5 secondi per ricordarti i numeri`;
 
 createNumber(); 
 setTimeout(resetText,5 * 1000);
 setTimeout(memory,6 * 1000);
 
+
+const countDown = setInterval(function(){
+   messaggio.innerHTML = `Hai ${--secondi} secondi per ricordarti i numeri`;
+}, 1000);
+
 function resetText(){
   container.innerHTML = '';
+  messaggio.innerHTML = '';
+  clearInterval(countDown);
 }
 
 function memory(){
@@ -17,19 +27,21 @@ function memory(){
 }
 
 function createNumber(){
-
   for(let i = 0; i < 5; i++){
-    const numero = random();
-    const sq = createSquare(container)
-    sq.innerHTML = `<span>${numero}</span>`;
-    numeriArrRandom.push(numero);
-    console.log(numeriArrRandom);
+    while(numeriArrRandom.length < 5){
+      const numero = random();
+      if (!numeriArrRandom.includes(numero)) {
+        const sq = createSquare(container)
+        sq.innerHTML = `<span>${numero}</span>`;
+        numeriArrRandom.push(numero);
+        console.log(numeriArrRandom);
+      }
+    }
   }
-
 }
 
 function random(){
-  return Math.floor(Math.random() * 10 + 1);
+  return Math.floor(Math.random() * 100 + 1);
 }
 
 function createSquare(container){
@@ -41,7 +53,7 @@ function createSquare(container){
 
 function promptNumbers(){
   for (let i = 0; i < 5; i++) {
-    const numero = prompt('inserisci un numero da 1 a 10');
+    const numero = prompt('inserisci un numero da 1 a 100');
     numeriArr.push(numero);
   }
   console.log(numeriArr);
